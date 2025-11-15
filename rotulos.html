@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSInfo- Gerador de Rótulos</title>
+   <link rel="stylesheet" href="rotulo.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DAIWESY</h1>
+            <p class="subtitle">Gerador de Rótulos Premium - Personalizável</p>
+        </header>
+
+        <section class="controles-avancados">
+            <div class="secao-controles">
+                <div class="secao-titulo">🎨 Personalizar Fundo</div>
+                <div class="upload-section">
+                    <label for="uploadFundo" class="upload-label">
+                        📷 Upload de Imagem de Fundo
+                    </label>
+                    <input type="file" id="uploadFundo" accept="image/*">
+                    <div class="upload-info">
+                        Adicione uma imagem para usar como fundo desfocado
+                    </div>
+                    <div class="preview-container" id="previewFundo">
+                        <img id="previewImg" src="" alt="Preview do fundo">
+                    </div>
+                </div>
+
+                <div class="controles-fundo">
+                    <div class="controle">
+                        <label for="intensidadeBlur">Intensidade do Desfoque</label>
+                        <input type="range" id="intensidadeBlur" min="1" max="10" value="3">
+                        <span id="valorBlur">3px</span>
+                    </div>
+                    <div class="controle">
+                        <label for="opacidadeFundo">Opacidade do Fundo</label>
+                        <input type="range" id="opacidadeFundo" min="10" max="100" value="40">
+                        <span id="valorOpacidade">40%</span>
+                    </div>
+                    <button class="btn-controle" id="aplicarFundo">Aplicar a Todos</button>
+                    <button class="btn-controle" id="removerFundo">Remover Fundo</button>
+                </div>
+            </div>
+
+            <div class="secao-controles">
+                <div class="secao-titulo">✏️ Personalizar Logo</div>
+                <div class="upload-section">
+                    <label for="uploadLogo" class="upload-label">
+                        🏷️ Upload de Logo Personalizada
+                    </label>
+                    <input type="file" id="uploadLogo" accept="image/*">
+                    <div class="upload-info">
+                        Adicione seu próprio logo (recomendado: fundo transparente)
+                    </div>
+                    <div class="preview-container" id="previewLogo">
+                        <img id="previewLogoImg" src="" alt="Preview do logo" class="preview-logo">
+                    </div>
+                    <button class="btn-controle" id="removerLogo" style="margin-top: 10px;">Remover Logo Personalizado</button>
+                </div>
+            </div>
+
+            <div class="secao-controles">
+                <div class="secao-titulo">📝 Personalizar Texto</div>
+                <div class="customizacao-texto">
+                    <div class="textarea-container">
+                        <textarea class="custom-textarea" id="textoPersonalizado" placeholder="Digite sua mensagem personalizada aqui..."></textarea>
+                        <div class="contador-caracteres" id="contadorCaracteres">0/500</div>
+                    </div>
+                    <button class="btn-controle" id="aplicarTexto">Aplicar Texto a Todos</button>
+                    <button class="btn-controle" id="restaurarTexto">Restaurar Texto Original</button>
+                </div>
+            </div>
+
+            <div class="secao-controles">
+                <div class="secao-titulo">⚖️ Personalizar Gramagem</div>
+                <div class="info-adicional-gramagem">
+                    <div class="input-group">
+                        <label for="quantidadeGramagem">Quantidade</label>
+                        <input type="number" id="quantidadeGramagem" placeholder="Ex: 250, 500, 1000" min="1" max="5000" value="500">
+                    </div>
+                    <div class="input-group">
+                        <label for="unidadeGramagem">Unidade</label>
+                        <select id="unidadeGramagem">
+                            <option value="g">Gramas (g)</option>
+                            <option value="kg">Quilogramas (kg)</option>
+                            <option value="ml">Mililitros (ml)</option>
+                            <option value="l">Litros (l)</option>
+                            <option value="un">Unidades</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="tipoPeso">Tipo de Peso</label>
+                        <select id="tipoPeso">
+                            <option value="liquido">Peso Líquido</option>
+                            <option value="bruto">Peso Bruto</option>
+                            <option value="drenado">Peso Drenado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gramagem-rapida">
+                    <button class="btn-gramagem ativa" data-gramagem="250">250g</button>
+                    <button class="btn-gramagem" data-gramagem="500">500g</button>
+                    <button class="btn-gramagem" data-gramagem="1000">1kg</button>
+                    <button class="btn-gramagem" data-gramagem="150">150g</button>
+                    <button class="btn-gramagem" data-gramagem="750">750g</button>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn-controle" id="aplicarGramagem">Aplicar Gramagem</button>
+                    <button class="btn-controle" id="restaurarGramagem">Restaurar Padrão (500g)</button>
+                </div>
+            </div>
+
+            <div class="secao-controles">
+                <div class="secao-titulo">📋 Informações Adicionais</div>
+                <div class="info-adicional">
+                    <div class="input-group">
+                        <label for="validadeProduto">📅 Validade do Produto</label>
+                        <input type="text" id="validadeProduto" placeholder="Ex: Prod: JUNHO 2025 Exp: JUNHO 2026">
+                    </div>
+                    <div class="input-group">
+                        <label for="localizacao">📍 Localização do Estabelecimento</label>
+                        <input type="text" id="localizacao" placeholder="Ex: Av.Angola -Maputo">
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn-controle" id="aplicarInfo">Aplicar Informações</button>
+                    <button class="btn-controle" id="limparInfo">Limpar Informações</button>
+                </div>
+            </div>
+
+            <div class="download-alternativo">
+                <h4 style="color: var(--gold); margin-bottom: 10px;">💡 Solução Alternativa de Download</h4>
+                <p style="color: var(--light-gold); font-size: 0.9rem; margin-bottom: 10px;">
+                    Se o download automático não funcionar, use estas opções:
+                </p>
+                <button class="btn-alternativo" id="screenshotManual">📸 Captura de Tela Manual</button>
+                <button class="btn-alternativo" id="downloadSemFundo">📥 Download sem Imagem de Fundo</button>
+            </div>
+
+            <div class="dica-download">
+                <h4>💡 Dicas para Download Perfeito:</h4>
+                <ul>
+                    <li>• Use imagens de fundo com boa resolução</li>
+                    <li>• Logos em PNG com fundo transparente funcionam melhor</li>
+                    <li>• O download pode levar alguns segundos</li>
+                    <li>• Se não funcionar, use a opção "Download sem Imagem de Fundo"</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="filtros">
+            <div class="filtro-group">
+                <button class="filtro-btn active" data-filtro="todos">Todos os Rótulos</button>
+                <button class="filtro-btn" data-filtro="peanut">PEANUT BUTTER</button>
+                <button class="filtro-btn" data-filtro="molina">MOLINA</button>
+                <button class="filtro-btn" data-filtro="vertical">Verticais</button>
+                <button class="filtro-btn" data-filtro="horizontal">Horizontais</button>
+            </div>
+        </section>
+
+        <section class="grid-rotulos" id="gridRotulos">
+            <!-- Rótulos serão inseridos via JavaScript -->
+        </section>
+    </div>
+
+    <div class="modal" id="modalRotulo">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="full-rotulo">
+                <div class="rotulo-container" id="fullRotuloContainer">
+                    <!-- Conteúdo do rótulo será inserido aqui -->
+                </div>
+            </div>
+            <div class="controles">
+                <button class="btn-download" id="btnDownloadModal">📥 Baixar Rótulo (Alta Qualidade)</button>
+                <button class="btn-secundario" id="btnFecharModal">Fechar Visualização</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading">
+        <div>🎨 Gerando imagem de alta qualidade...</div>
+        <div style="font-size: 0.9rem; margin-top: 10px; color: var(--light-gold);">Isso pode levar alguns segundos</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="rotulo.js"></script>
+</body>
+</html>
